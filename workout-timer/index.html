@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>PosTure — Back &amp; Posture Workout</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<div id="app">
+
+  <header class="app-header">
+    <div class="logo">
+      <svg class="logo-icon" viewBox="0 0 32 32" fill="none">
+        <path d="M16 4C9.373 4 4 9.373 4 16s5.373 12 12 12 12-5.373 12-12S22.627 4 16 4z" fill="url(#lg)"/>
+        <path d="M16 10v12M10 16h12" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+        <defs><linearGradient id="lg" x1="4" y1="4" x2="28" y2="28"><stop offset="0%" stop-color="#6c63ff"/><stop offset="100%" stop-color="#4ecdc4"/></linearGradient></defs>
+      </svg>
+      <span class="logo-text">PosTure</span>
+    </div>
+
+    <div class="header-stats">
+      <div class="stat-chip"><span class="stat-label">Streak</span><span class="stat-value" id="streak-count">0</span><span class="stat-unit">d</span></div>
+      <div class="stat-chip"><span class="stat-label">Sessions</span><span class="stat-value" id="sessions-count">0</span></div>
+    </div>
+
+    <div class="header-controls">
+      <button class="icon-btn mobile-list-btn" id="btn-mobile-list" title="Exercise list">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+      </button>
+      <button class="icon-btn" id="btn-sound" title="Toggle sound">
+        <svg class="icon-sound-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+        <svg class="icon-sound-off hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+      </button>
+      <button class="icon-btn" id="btn-settings" title="Settings">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+      </button>
+      <button class="icon-btn" id="btn-fullscreen" title="Fullscreen (F)">
+        <svg class="icon-fs-enter" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+        <svg class="icon-fs-exit hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main class="app-main">
+
+    <aside class="exercise-sidebar" id="exercise-sidebar">
+      <div class="sidebar-header">
+        <h3>Exercises</h3>
+        <span class="progress-text" id="progress-text">0 / 10</span>
+      </div>
+      <div class="exercise-list" id="exercise-list"></div>
+      <div class="sidebar-footer">
+        <div class="total-duration" id="sidebar-total-duration"></div>
+      </div>
+    </aside>
+
+    <section class="timer-section" id="timer-section">
+
+      <div class="exercise-image-wrap">
+        <img class="exercise-image" id="exercise-image" src="" alt="" loading="lazy">
+        <div class="image-overlay"></div>
+        <div class="next-badge">
+          <span class="next-label">Next</span>
+          <span class="next-name" id="next-exercise-name">—</span>
+        </div>
+        <div class="exercise-index-badge" id="exercise-index-badge">1 / 10</div>
+      </div>
+
+      <div class="timer-container">
+        <div class="timer-ring-wrap">
+          <svg class="timer-ring" viewBox="0 0 220 220">
+            <defs>
+              <linearGradient id="ring-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#6c63ff"/><stop offset="100%" stop-color="#4ecdc4"/>
+              </linearGradient>
+              <linearGradient id="rest-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#f7b731"/><stop offset="100%" stop-color="#ff9f43"/>
+              </linearGradient>
+            </defs>
+            <circle class="ring-track" cx="110" cy="110" r="96" stroke="rgba(255,255,255,0.05)" stroke-width="10" fill="none"/>
+            <circle class="ring-progress" id="ring-progress" cx="110" cy="110" r="96"
+              stroke="url(#ring-gradient)" stroke-width="10" fill="none"
+              stroke-linecap="round" transform="rotate(-90 110 110)"
+              stroke-dasharray="603.2" stroke-dashoffset="0"/>
+          </svg>
+          <div class="timer-inner">
+            <div class="timer-phase" id="timer-phase">Ready</div>
+            <div class="timer-time" id="timer-time">0:00</div>
+            <div class="timer-label" id="timer-label">Press play</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="exercise-info">
+        <h2 class="exercise-name" id="exercise-name">—</h2>
+        <p class="exercise-desc" id="exercise-desc"></p>
+        <div class="muscle-tags" id="muscle-tags"></div>
+      </div>
+
+      <div class="controls">
+        <button class="ctrl-btn ctrl-secondary" id="btn-prev" title="Previous (←)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="19 20 9 12 19 4 19 20"/><line x1="5" y1="19" x2="5" y2="5"/></svg>
+        </button>
+        <button class="ctrl-btn ctrl-primary" id="btn-play-pause">
+          <svg class="icon-play" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          <svg class="icon-pause hidden" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+        </button>
+        <button class="ctrl-btn ctrl-secondary" id="btn-next" title="Skip (→)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 4 15 12 5 20 5 4"/><line x1="19" y1="5" x2="19" y2="19"/></svg>
+        </button>
+      </div>
+
+      <div class="overall-progress">
+        <div class="overall-progress-bar">
+          <div class="overall-progress-fill" id="overall-progress-fill"></div>
+        </div>
+        <div class="overall-progress-labels">
+          <span id="elapsed-time">0:00</span>
+          <span id="total-time-label">0:00</span>
+        </div>
+      </div>
+
+      <div class="keyboard-hint">Space: play/pause &nbsp;·&nbsp; ← → navigate &nbsp;·&nbsp; F: fullscreen &nbsp;·&nbsp; M: mute</div>
+
+    </section>
+  </main>
+</div>
+
+<div class="completion-overlay hidden" id="completion-overlay">
+  <div class="completion-card">
+    <span class="completion-icon">🎉</span>
+    <h2>Workout Complete!</h2>
+    <p>Excellent work. Your back will thank you.</p>
+    <div class="completion-stats">
+      <div class="comp-stat"><div class="comp-stat-value" id="comp-time">—</div><div class="comp-stat-label">Duration</div></div>
+      <div class="comp-stat"><div class="comp-stat-value" id="comp-exercises">—</div><div class="comp-stat-label">Exercises</div></div>
+      <div class="comp-stat"><div class="comp-stat-value" id="comp-streak">—</div><div class="comp-stat-label">Streak</div></div>
+    </div>
+    <button class="btn-restart" id="btn-restart">Start Again</button>
+  </div>
+</div>
+
+<div class="modal-overlay hidden" id="settings-modal">
+  <div class="modal-card">
+    <div class="modal-header">
+      <h3>Settings</h3>
+      <button class="icon-btn" id="btn-close-settings"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    </div>
+    <div class="modal-body">
+      <div class="setting-row"><div><div class="setting-label">Sound Effects</div><div class="setting-desc">Beeps and completion chimes</div></div><label class="toggle"><input type="checkbox" id="setting-sound" checked><span class="toggle-slider"></span></label></div>
+      <div class="setting-row"><div><div class="setting-label">Rest Duration</div><div class="setting-desc">Seconds between exercises</div></div><select class="setting-select" id="setting-rest"><option value="5">5 sec</option><option value="10" selected>10 sec</option><option value="15">15 sec</option><option value="20">20 sec</option><option value="30">30 sec</option></select></div>
+      <div class="setting-row"><div><div class="setting-label">Auto-advance</div><div class="setting-desc">Automatically start next exercise</div></div><label class="toggle"><input type="checkbox" id="setting-auto" checked><span class="toggle-slider"></span></label></div>
+      <div class="setting-row"><div><div class="setting-label">Countdown Beeps</div><div class="setting-desc">3-2-1 alert before transitions</div></div><label class="toggle"><input type="checkbox" id="setting-countdown" checked><span class="toggle-slider"></span></label></div>
+    </div>
+    <div class="modal-footer"><button class="btn-primary" id="btn-save-settings">Save Settings</button></div>
+  </div>
+</div>
+
+<div class="toast-container" id="toast-container"></div>
+
+<script src="app.js"></script>
+</body>
+</html>
